@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central da Equipe — Isa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#101B33;
+    --navy-mid:#1B2C52;
+    --navy-line:#2C3E68;
+    --cream:#F6F2E8;
+    --cream-card:#FFFDF8;
+    --gold:#D9A441;
+    --gold-soft:#F0D9A6;
+    --lime:#9AC93E;
+    --coral:#E1583B;
+    --teal:#2FA8B8;
+    --ink:#1A1A1A;
+    --ink-soft:#4A5169;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',serif;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px;}
+
+  /* HERO */
+  .hero{
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(217,164,65,.35), transparent 60%),
+      linear-gradient(160deg, var(--navy-deep), var(--navy-mid) 70%);
+    color:var(--cream);
+    padding:56px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; right:-60px; top:-60px;
+    width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(154,201,62,.35), transparent 70%);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold-soft); font-weight:700;
+    border:1px solid rgba(217,164,65,.4);
+    padding:6px 14px; border-radius:999px;
+    background:rgba(217,164,65,.08);
+  }
+  .hero h1{
+    font-size:clamp(32px,6vw,52px);
+    font-weight:700;
+    margin:20px 0 14px;
+    letter-spacing:-.01em;
+  }
+  .hero p.lede{
+    font-size:17px; max-width:60ch; color:#DCE1EE;
+  }
+  .hero-note{
+    margin-top:26px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    font-size:15px;
+    color:#EDE9DD;
+  }
+  .hero-note b{color:var(--gold-soft);}
+
+  /* NAV */
+  .quicknav{
+    display:flex; flex-wrap:wrap; gap:8px;
+    margin-top:24px;
+  }
+  .quicknav a{
+    font-size:13px; font-weight:600;
+    padding:8px 14px; border-radius:999px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.16);
+    text-decoration:none;
+    color:#EDE9DD;
+    transition:background .15s;
+  }
+  .quicknav a:hover{background:rgba(217,164,65,.28);}
+
+  /* SECTIONS */
+  section{padding:52px 0;}
+  section + section{border-top:1px solid #E7E0CF;}
+  .sec-label{
+    display:flex; align-items:center; gap:10px;
+    font-size:12.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--navy-mid); margin-bottom:10px;
+  }
+  .sec-label .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+  section h2{
+    font-size:clamp(24px,4vw,32px); margin:0 0 8px; color:var(--navy-deep);
+  }
+  .sec-desc{color:var(--ink-soft); max-width:62ch; margin-bottom:28px; font-size:15.5px;}
+
+  /* DAILY CHECKLIST */
+  .day-grid{display:grid; gap:14px;}
+  .task{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--cream-card);
+    border:1px solid #E7E0CF;
+    border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .task .num{
+    flex:0 0 auto;
+    width:34px;height:34px;border-radius:10px;
+    background:var(--navy-deep); color:var(--gold-soft);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; font-size:15px;
+  }
+  .task h4{margin:0 0 4px; font-size:16px;}
+  .task p{margin:0; font-size:14.5px; color:var(--ink-soft);}
+  .task .tag{
+    display:inline-block; margin-top:8px;
+    font-size:11.5px; font-weight:700; letter-spacing:.04em;
+    padding:3px 9px; border-radius:999px;
+  }
+  .tag.urgent{background:#FBE3DC; color:var(--coral);}
+  .tag.daily{background:#EAF2CE; color:#5D7A1E;}
+  .tag.check{background:#DCEFF1; color:#1E7A88;}
+  .brand-tag{
+    display:inline-block; margin-left:8px; font-size:10.5px; font-weight:800;
+    letter-spacing:.04em; text-transform:uppercase; vertical-align:middle;
+    padding:2px 8px; border-radius:999px; position:relative; top:-1px;
+  }
+  .brand-uni{background:#E4E9F5; color:var(--navy-mid);}
+  .brand-wash{background:#F3E3D3; color:#8A5A25;}
+
+  /* WHATSAPP GROUPS */
+  .group-structure{
+    background:var(--cream-card); border:1px solid #E7E0CF; border-radius:var(--radius);
+    padding:24px; margin-bottom:20px;
+  }
+  .tree{font-size:14.5px;}
+  .tree .l1{font-weight:800; color:var(--navy-deep); margin-top:14px;}
+  .tree .l1:first-child{margin-top:0;}
+  .tree .l2{margin-left:22px; color:var(--ink-soft); padding:3px 0;}
+  .tree .l2::before{content:"— "; color:var(--gold);}
+  .naming{
+    background:var(--navy-deep); color:var(--cream);
+    border-radius:14px; padding:16px 20px; margin-top:16px;
+    font-size:14.5px;
+  }
+  .naming code{
+    background:rgba(217,164,65,.18); color:var(--gold-soft);
+    padding:2px 8px; border-radius:6px; font-family:'Manrope',monospace; font-weight:700;
+  }
+  .rules-list{margin:0; padding-left:0; list-style:none;}
+  .rules-list li{
+    padding:10px 0 10px 26px; border-bottom:1px solid #EEE7D6;
+    position:relative; font-size:14.5px; color:var(--ink-soft);
+  }
+  .rules-list li:last-child{border-bottom:none;}
+  .rules-list li::before{
+    content:"✓"; position:absolute; left:0; top:10px;
+    color:var(--lime); font-weight:800;
+  }
+
+  /* MEET / SALA ABERTA — signature block */
+  .meet-card{
+    position:relative;
+    background:linear-gradient(135deg, var(--navy-deep), #1E3A63);
+    color:var(--cream);
+    border-radius:24px;
+    padding:32px;
+    overflow:hidden;
+  }
+  .meet-card::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.03) 0 2px, transparent 2px 24px);
+  }
+  .live-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(225,88,59,.18); border:1px solid rgba(225,88,59,.5);
+    color:#FF8A6E; font-weight:800; font-size:12.5px; letter-spacing:.08em;
+    padding:6px 14px; border-radius:999px; position:relative; z-index:1;
+  }
+  .live-dot{width:8px;height:8px;border-radius:50%;background:#FF5A3C; animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,60,.6);}70%{box-shadow:0 0 0 9px rgba(255,90,60,0);}100%{box-shadow:0 0 0 0 rgba(255,90,60,0);}}
+  .meet-card h3{position:relative; z-index:1; font-size:24px; margin:16px 0 8px;}
+  .meet-card p{position:relative; z-index:1; color:#D3D9E8; max-width:56ch; font-size:15px;}
+  .meet-link-box{
+    position:relative; z-index:1;
+    margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    background:rgba(255,255,255,.08); border:1px dashed rgba(217,164,65,.6);
+    border-radius:12px; padding:14px 16px; font-size:14.5px;
+  }
+  .meet-link-box b{color:var(--gold-soft);}
+  .meet-script{
+    position:relative; z-index:1; margin-top:18px;
+    background:rgba(255,255,255,.06); border-radius:12px; padding:16px 18px;
+    font-size:14.5px; font-style:italic; color:#EAE6D6; border-left:3px solid var(--gold);
+  }
+
+  /* FAQ ACCORDION */
+  .faq-group{margin-bottom:22px;}
+  .faq-group-title{
+    font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--teal); margin-bottom:10px;
+  }
+  details{
+    background:var(--cream-card); border:1px solid #E7E0CF; border-radius:14px;
+    margin-bottom:8px; overflow:hidden;
+  }
+  summary{
+    cursor:pointer; padding:15px 18px; font-weight:700; font-size:14.5px;
+    list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;
+    color:var(--navy-deep);
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{
+    content:"+"; font-family:'Fraunces',serif; font-size:20px; color:var(--gold);
+    flex:0 0 auto;
+  }
+  details[open] summary::after{content:"–";}
+  details[open] summary{border-bottom:1px solid #EEE7D6;}
+  .faq-body{padding:14px 18px 18px; font-size:14.5px; color:var(--ink-soft);}
+  .faq-body p{margin:0 0 8px;}
+  .faq-body p:last-child{margin-bottom:0;}
+
+  /* LINK OUT CARDS */
+  .linkgrid{display:grid; gap:14px; grid-template-columns:1fr;}
+  @media(min-width:640px){.linkgrid{grid-template-columns:1fr 1fr;}}
+  .linkcard{
+    display:block; text-decoration:none;
+    background:var(--cream-card); border:1px solid #E7E0CF; border-radius:var(--radius);
+    padding:20px; transition:transform .15s, box-shadow .15s;
+  }
+  .linkcard:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(16,27,51,.08);}
+  .linkcard .ico{font-size:22px;}
+  .linkcard h4{margin:10px 0 4px; font-size:16px; color:var(--navy-deep);}
+  .linkcard p{margin:0; font-size:13.5px; color:var(--ink-soft);}
+  .linkcard .go{
+    display:inline-block; margin-top:10px; font-size:12.5px; font-weight:800;
+    color:var(--gold); letter-spacing:.03em;
+  }
+
+  /* ESCALATION */
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:var(--cream-card); border:1px solid #E7E0CF; border-radius:14px;
+    padding:16px 18px; margin-bottom:10px; flex-wrap:wrap;
+  }
+  .contact-row .who{font-weight:700; font-size:14.5px; color:var(--navy-deep);}
+  .contact-row .when{font-size:13px; color:var(--ink-soft);}
+  .pill-btn{
+    font-size:13px; font-weight:700; text-decoration:none;
+    background:var(--navy-deep); color:var(--cream);
+    padding:8px 16px; border-radius:999px;
+  }
+  .emergency{
+    margin-top:18px; background:#FBF1DA; border:1px solid #E9CE8E; border-radius:14px;
+    padding:16px 18px; font-size:14px; color:#6B4E10;
+  }
+
+  footer{
+    background:var(--navy-deep); color:#B7BEDA; text-align:center;
+    padding:36px 22px; font-size:13.5px;
+  }
+  footer b{color:var(--gold-soft);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">📍 Central da Equipe · Isa</span>
+    <h1>Enquanto eu tô fora, o time não para.</h1>
+    <nav class="quicknav">
+      <a href="#rotina">Rotina diária</a>
+      <a href="#grupos">Grupos WhatsApp</a>
+      <a href="#polos-parceiros">Polos parceiros</a>
+      <a href="#plantao">Plantão / Meet</a>
+      <a href="#duvidas">Onde tirar dúvida</a>
+      <a href="#faq">FAQ Semipresencial</a>
+      <a href="#faqgeral">FAQ Geral</a>
+      <a href="#washington">Academia Washington</a>
+      <a href="#treinamento">Treinamento completo</a>
+      <a href="#contatos">Contatos</a>
+    </nav>
+  </div>
+</div>
+
+<section id="rotina">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Todo santo dia</div>
+    <h2>Rotina diária</h2>
+    <p class="sec-desc">Isso não é opcional nem depende de "sobrar tempo" — é a base que mantém as duas operações redondas, UniFECAF e Washington. Façam nessa ordem, de preferência logo no início do turno.</p>
+    <div class="day-grid">
+      <div class="task">
+        <div class="num">1</div>
+        <div>
+          <h4>Portal Tarefas — efetivar cancelamentos <span class="brand-tag brand-uni">UniFECAF</span></h4>
+          <p>Entrar no UniFECAF Polos → Tarefas e Gestão e dar baixa em todos os cancelamentos pendentes do dia. Cancelamento parado gera cobrança indevida e reclamação — trata igual boleto vencendo.</p>
+          <span class="tag urgent">Prioridade do dia</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">2</div>
+        <div>
+          <h4>Analisar a lista de frequência <span class="brand-tag brand-wash">Washington</span></h4>
+          <p>Conferir todo dia quem faltou. Aluno com 2 ou 3 faltas seguidas, contato ativo na hora — não espera ele sumir de vez.</p>
+          <span class="tag urgent">Prioridade do dia</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">3</div>
+        <div>
+          <h4>Contato ativo com os alunos em risco <span class="brand-tag brand-uni">UniFECAF</span></h4>
+          <p>Puxar do CRM (aba Acadêmico) quem está inadimplente, sem acesso ao AVA ou com falta acima de 25%. Mandar mensagem no grupo/etiqueta certa — nunca esperar o aluno vir até vocês.</p>
+          <span class="tag daily">Diário</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">4</div>
+        <div>
+          <h4>Conferir o fluxo do financeiro <span class="brand-tag brand-wash">Washington</span></h4>
+          <p>Aluno pagou por Pix ou cartão → dar baixa no Asaas na hora, pra ele não continuar recebendo cobrança à toa.</p>
+          <span class="tag daily">Diário</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">5</div>
+        <div>
+          <h4>Checar etiquetas e grupos do WhatsApp <span class="brand-tag brand-uni">UniFECAF</span></h4>
+          <p>Confirmar que todo aluno novo do dia já está no grupo certo (polo + mês de entrada + curso) e com a etiqueta aplicada. Sem etiqueta, a gente perde o aluno de vista.</p>
+          <span class="tag check">Organização</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">6</div>
+        <div>
+          <h4>Unidade limpa, organizada e alinhada com os professores <span class="brand-tag brand-wash">Washington</span></h4>
+          <p>Passar o olho no espaço todo dia — recepção, salas, materiais — e checar com cada professor o que ele precisa pra aula (material, sala, equipamento).</p>
+          <span class="tag check">Organização</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">7</div>
+        <div>
+          <h4>Abrir a sala de plantão (Meet) <span class="brand-tag brand-uni">UniFECAF</span></h4>
+          <p>Deixar o Meet fixo aberto em uma aba logo no início do expediente. É o canal pra tirar dúvida de aluno em tempo real — ver protocolo completo na seção de plantão abaixo.</p>
+          <span class="tag daily">Diário</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">8</div>
+        <div>
+          <h4>Trello — dúvidas frequentes e comunicação da unidade <span class="brand-tag brand-wash">Washington</span></h4>
+          <p>Antes de perguntar no grupo, olhar o Trello — é onde ficam as dúvidas mais frequentes e onde a unidade se comunica no geral.</p>
+          <span class="tag daily">Diário</span>
+        </div>
+      </div>
+      <div class="task">
+        <div class="num">9</div>
+        <div>
+          <h4>Revisar solicitações no Mentor / Agiliza <span class="brand-tag brand-uni">UniFECAF</span></h4>
+          <p>Verificar se há Análise Curricular aberta há mais de 4 dias úteis sem retorno, e requerimentos de aluno parados aguardando o polo. Protocolo velho é aluno perdido.</p>
+          <span class="tag check">Organização</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="grupos">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Organização</div>
+    <h2>Grupos fechados de WhatsApp</h2>
+    <p class="sec-desc">Grupo fechado (só equipe + alunos daquele recorte, sem entrada livre) organizado por polo e, dentro dele, por etiqueta de mês de entrada e curso. Isso evita mensagem se perdendo e deixa claro quem responde o quê.</p>
+
+    <div class="group-structure">
+      <div class="tree">
+        <div class="l1">📍 Grupo por Polo (nível 1)</div>
+        <div class="l2">Um grupo fechado por unidade/polo — é o "guarda-chuva" geral daquele polo.</div>
+
+        <div class="l1">🏷️ Etiquetas dentro do grupo (nível 2)</div>
+        <div class="l2">Alunos EAD — Março</div>
+        <div class="l2">Alunos EAD — Abril</div>
+        <div class="l2">Alunos — Pedagogia</div>
+        <div class="l2">Alunos — Psicopedagogia</div>
+        <div class="l2">(repetir o padrão mês/curso para cada nova turma que entrar)</div>
+      </div>
+
+      <div class="naming">
+        Padrão de nome do grupo: <code>[POLO] · Alunos</code><br>
+        Padrão de etiqueta: <code>[CURSO] · [MÊS entrada]</code> — ex: <code>EAD · Março</code> ou <code>Psicopedagogia · Abril</code>
+      </div>
+    </div>
+
+    <ul class="rules-list">
+      <li>Todo aluno matriculado entra no grupo do <b>seu polo</b> no mesmo dia da matrícula — isso vira parte do checklist de boas-vindas.</li>
+      <li>A etiqueta segue o código de eixo do aluno (ex: E.2026.1C = março) — usem a mesma lógica pra nomear a etiqueta, fica fácil bater com o sistema.</li>
+      <li>Quando o aluno rematricula e o eixo muda de semestre, atualiza a etiqueta — não cria grupo novo.</li>
+      <li>Avisos gerais (calendário, prova, feriado) vão pro grupo todo; dúvida pontual de disciplina/curso, direciona pra etiqueta certa pra não poluir o grupo geral.</li>
+      <li>Quem sai da instituição (cancelamento, transferência) sai do grupo — mantém a lista limpa.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="polos-parceiros">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Aluno com aula presencial em outro polo</div>
+    <h2>Coordenadores dos polos parceiros</h2>
+    <p class="sec-desc">Quando a dúvida é sobre a aula presencial de um aluno que está vinculado a outro polo, chama direto o coordenador responsável — não precisa passar pelo Relacionamento pra isso.</p>
+
+    <div class="linkgrid">
+      <a class="linkcard" href="https://wa.me/5521982923200" target="_blank" rel="noopener">
+        <div class="ico">📍</div>
+        <h4>Niterói e Barra</h4>
+        <p>Ana — (21) 98292-3200</p>
+        <span class="go">CHAMAR NO WHATSAPP →</span>
+      </a>
+      <a class="linkcard" href="https://wa.me/5521988733879" target="_blank" rel="noopener">
+        <div class="ico">📍</div>
+        <h4>Campo Grande</h4>
+        <p>Patrícia — (21) 98873-3879</p>
+        <span class="go">CHAMAR NO WHATSAPP →</span>
+      </a>
+      <a class="linkcard" href="https://wa.me/5521984560785" target="_blank" rel="noopener">
+        <div class="ico">📍</div>
+        <h4>Nova Iguaçu</h4>
+        <p>Andréia — (21) 98456-0785</p>
+        <span class="go">CHAMAR NO WHATSAPP →</span>
+      </a>
+      <a class="linkcard" href="https://wa.me/5521996571095" target="_blank" rel="noopener">
+        <div class="ico">📍</div>
+        <h4>Museu do Amanhã (Centro do RJ)</h4>
+        <p>Leilane — (21) 99657-1095</p>
+        <span class="go">CHAMAR NO WHATSAPP →</span>
+      </a>
+      <a class="linkcard" href="https://wa.me/5521972069407" target="_blank" rel="noopener">
+        <div class="ico">📍</div>
+        <h4>Caxias</h4>
+        <p>Tainara — (21) 97206-9407</p>
+        <span class="go">CHAMAR NO WHATSAPP →</span>
+      </a>
+      <a class="linkcard" href="https://chat.whatsapp.com/D18UnL9EIoh60yuFvtT0C8" target="_blank" rel="noopener">
+        <div class="ico">🔄</div>
+        <h4>Grupo de trocas de aula</h4>
+        <p>Museu do Amanhã + Nova Iguaçu criaram um grupo pra avisar troca de aula e afins entre os polos parceiros.</p>
+        <span class="go">ENTRAR NO GRUPO →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="plantao">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Suporte em tempo real</div>
+    <h2>Plantão de dúvidas — Meet sempre aberto</h2>
+    <p class="sec-desc">Aluno travado numa live, com dificuldade de acessar o AVA ou perdido no meio de uma prova? Em vez de ficar só no texto, manda o link do Meet na hora. Câmera fechada é o de menos — o que importa é resolver ao vivo.</p>
+
+    <div class="meet-card">
+      <span class="live-badge"><span class="live-dot"></span>SALA SEMPRE ABERTA</span>
+      <h3>Uma sala fixa, aberta o expediente inteiro</h3>
+      <p>Criem uma sala recorrente no Google Meet (Google Calendar → Nova reunião → "Sala de reunião recorrente", sem data de término) e deixem ela como o link oficial de plantão. Fixem essa aba no navegador de quem estiver na linha de frente.</p>
+      <div class="meet-link-box">🔗 <b>Link fixo da sala:</b> [cole aqui o link permanente do Meet quando criar]</div>
+      <div class="meet-script">"Oi, [nome]! Pra resolver mais rápido, entra nessa sala aqui que eu te explico ao vivo: [link do Meet]. Pode entrar sem câmera, sem problema — só preciso ouvir você."</div>
+    </div>
+
+    <ul class="rules-list">
+      <li>Usa o Meet pra: erro de acesso ao AVA, dúvida na hora da prova presencial, dificuldade com a live, ou qualquer coisa que por texto vira 10 mensagens sem resolver.</li>
+      <li>Câmera é opcional dos dois lados — o que não pode é ficar sem áudio quando o aluno já está esperando.</li>
+      <li>Se o problema for financeiro ou acadêmico fora do escopo do polo, direciona pro Agiliza (11 4210-4950) — o Meet é pra suporte operacional do polo.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Antes de perguntar pro time</div>
+    <h2>Onde tirar dúvida por modalidade</h2>
+    <p class="sec-desc">Esses dois links reúnem o material oficial mais atualizado — sempre vale checar ali antes de escalar.</p>
+    <div class="linkgrid">
+      <a class="linkcard" href="https://linktr.ee/Saude_UniFECAF" target="_blank" rel="noopener">
+        <div class="ico">🩺</div>
+        <h4>Dúvidas sobre o EAD</h4>
+        <p>Linktree oficial com o material de apoio da modalidade EAD (Saúde e demais cursos).</p>
+        <span class="go">ABRIR LINKTREE →</span>
+      </a>
+      <a class="linkcard" href="https://linktr.ee/SemipresencialUniFECAF" target="_blank" rel="noopener">
+        <div class="ico">🏫</div>
+        <h4>Dúvidas sobre o Semipresencial</h4>
+        <p>Linktree oficial com tudo sobre a modalidade semi — estrutura, calendário e materiais.</p>
+        <span class="go">ABRIR LINKTREE →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="qrcode">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Mudou recentemente</div>
+    <h2>Lista de presença do Semipresencial — novo caminho</h2>
+    <p class="sec-desc">O link antigo de geração do QR Code de presença foi <b>desativado</b>. A partir de agora é só por aqui:</p>
+    <div class="meet-card" style="padding:26px;">
+      <span class="live-badge" style="background:rgba(154,201,62,.18); border-color:rgba(154,201,62,.5); color:#C3E37B;">📲 NOVO SISTEMA</span>
+      <h3 style="font-size:20px;">QR Code de Aulas e Provas</h3>
+      <p><a href="https://unifecaf-horario.netlify.app/" target="_blank" rel="noopener" style="color:var(--gold-soft); font-weight:700;">unifecaf-horario.netlify.app</a></p>
+      <div class="meet-script" style="font-style:normal;">
+        1. Clique em <b>"Visualizar sem login"</b><br>
+        2. Acesse a aba <b>Semipresencial</b><br>
+        3. Lá estão aulas, provas, presenças, QR Codes e lives — tudo num lugar só
+      </div>
+      <p style="margin-top:14px; font-size:13.5px;">🎥 Tem um tutorial de menos de 1 minuto direto no site — assistam antes de gerar o primeiro QR Code.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>As dúvidas que mais chegam</div>
+    <h2>FAQ — Semipresencial</h2>
+    <p class="sec-desc">Resumo direto do material oficial. Se a dúvida for mais específica, o polo tem o fluxo detalhado e o material completo linkados no treinamento (seção abaixo).</p>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Estrutura, turma e formato das aulas</div>
+      <details>
+        <summary>Como funciona a liberação de estrutura de um polo novo?</summary>
+        <div class="faq-body"><p>O polo preenche a estrutura pelo link oficial, a Juliana Sanchez verifica e aprova, o Joel (Head Relacionamento) faz a vinculação no UniFECAF Polos e libera o e-mail de confirmação — só depois disso o polo pode começar a captar.</p></div>
+      </details>
+      <details>
+        <summary>Como é definida a formação de turma?</summary>
+        <div class="faq-body"><p>Corte no dia 26 de cada mês. Quem não fechou turma comunica os alunos sobre a migração automática de eixo; quem fechou, informa dia, horário e tutor do encontro presencial.</p></div>
+      </details>
+      <details>
+        <summary>Como as aulas são compostas (live x presencial)?</summary>
+        <div class="faq-body"><p>4 lives semanais pelo AVA ao longo do mês de oferta da disciplina, mais 2 encontros presenciais quinzenais no polo (Hands-on), de 3h30 cada.</p></div>
+      </details>
+      <details>
+        <summary>As aulas presenciais ficam gravadas para quem faltou?</summary>
+        <div class="faq-body"><p>Não. São oficinas com metodologia ativa, sem caráter expositivo — por isso não há gravação nem anotação para compartilhar depois.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Frequência e faltas</div>
+      <details>
+        <summary>Como a frequência é calculada?</summary>
+        <div class="faq-body"><p>Reprova quem não atinge 75% de presença somando lives + presenciais (4 lives + 2 presenciais = 100%). Cada encontro pesa cerca de 16,67%. O aluno não consegue conferir a própria frequência na plataforma — se perguntarem, é assim mesmo.</p></div>
+      </details>
+      <details>
+        <summary>Aluno faltou no presencial e tem atestado — o que fazer?</summary>
+        <div class="faq-body"><p>Comprovando com atestado, a falta não conta. Envio é pelo Portal do Aluno → Agiliza → Outros Requerimentos → Abono de Faltas com Atestado. Sem atestado e sem ninguém comparecendo, o tutor ainda é remunerado; se o polo quiser repor a aula, o custo extra do tutor fica por conta do polo (e precisa comunicar via planilha de planejamento).</p></div>
+      </details>
+      <details>
+        <summary>E falta por força maior (chuva, estrada etc.)?</summary>
+        <div class="faq-body"><p>Aceita foto da estrada ou qualquer documento que justifique. Não há limite de justificativas de ausência.</p></div>
+      </details>
+      <details>
+        <summary>Como o aluno acessa a live dentro do AVA?</summary>
+        <div class="faq-body"><p>UniFECAF One → login com CPF e data de nascimento → Meus Cursos → Acessar AVA → disciplina do mês → Minha Disciplina → Aulas ao Vivo → Aulas Meet → abre em nova janela. O link libera no horário da aula e fica disponível como gravação depois. O CPF inserido é o que registra a presença.</p></div>
+      </details>
+      <details>
+        <summary>Como é confirmada a presença no presencial?</summary>
+        <div class="faq-body"><p>Pelo acesso do mentor do tutor, liberado pelo time do semi ao tutor cadastrado no polo.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Avaliações e provas</div>
+      <details>
+        <summary>Como é a composição da média?</summary>
+        <div class="faq-body"><p>Cada disciplina tem seu plano avaliativo (questionários, prova online, prova presencial e trabalho). Sempre oriente o aluno a consultar o plano avaliativo específico da disciplina.</p></div>
+      </details>
+      <details>
+        <summary>Aluno não fez a prova online — pode fazer só a presencial?</summary>
+        <div class="faq-body"><p>Pode, mas nesse caso precisa basicamente gabaritar a prova presencial pra passar.</p></div>
+      </details>
+      <details>
+        <summary>Como funciona a janela da prova presencial?</summary>
+        <div class="faq-body"><p>Fica disponível do dia 1 ao dia 15 do mês seguinte à oferta da disciplina. O polo define seus próprios dias e horários e faz o agendamento pelo UniFECAF Polos; a prova só libera no AVA quando o aluno chega no horário agendado. Duração: até 3h, com média real de 2h.</p></div>
+      </details>
+      <details>
+        <summary>Aluno perdeu a data da prova — tem segunda chamada?</summary>
+        <div class="faq-body"><p>Sim, avaliação substitutiva na 3ª semana do mês seguinte, mediante requerimento aberto pelo Mentor. Tem custo de SUB (R$80), com vencimento 5 dias após o deferimento. O polo organiza os dias dentro desse período.</p></div>
+      </details>
+      <details>
+        <summary>Quem corrige a prova e quando sai o resultado?</summary>
+        <div class="faq-body"><p>A questão discursiva é corrigida pelos tutores da disciplina. Notas e gabarito da prova regular saem até o último dia do mês de aplicação; da prova substitutiva, até o dia 10 do mês seguinte.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="faqgeral">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Vale pra qualquer modalidade</div>
+    <h2>FAQ Geral</h2>
+    <p class="sec-desc">Perguntas que aparecem em qualquer curso, EAD ou semi.</p>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Financeiro e provas</div>
+      <details>
+        <summary>Qual é a média da faculdade?</summary>
+        <div class="faq-body"><p>7 (sete).</p></div>
+      </details>
+      <details>
+        <summary>Aluno quer trocar a data de pagamento — como pedir?</summary>
+        <div class="faq-body"><p>Encaminhar para <b>relacionamento@fecaf.com.br</b>.</p></div>
+      </details>
+      <details>
+        <summary>Quanto custa a prova substitutiva?</summary>
+        <div class="faq-body"><p>R$ 80, cobrado quando o aluno perde todos os prazos regulares.</p></div>
+      </details>
+      <details>
+        <summary>Aluno tem atestado — precisa pagar a prova substitutiva?</summary>
+        <div class="faq-body"><p>Não. Apresentando atestado, o abono é concedido e ele não paga a substitutiva.</p></div>
+      </details>
+      <details>
+        <summary>Até quando as notas são lançadas no sistema?</summary>
+        <div class="faq-body"><p>Sempre até o final do mês.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Documentação</div>
+      <details>
+        <summary>Como enviar documentação com erro/pendência?</summary>
+        <div class="faq-body">
+          <p>Pode ser enviado pelo polo ou pelo próprio aluno, direto por e-mail ao setor de diplomas. Passo a passo:</p>
+          <p>1. Documentos em PDF · 2. Legíveis, sem cortes, sempre frente e verso · 3. Assunto do e-mail: "Entrega de Documentos" + RA ou CPF + nome completo · 4. No corpo do e-mail: nome completo, RA e nome do curso com o complemento (ex: "Graduação em Recursos Humanos" ou "Pós-Graduação em MBA em Gestão de Pessoas").</p>
+          <p>Enviar para <b>diplomas@fecaf.com.br</b>, sempre com <b>relacionamento@fecaf.com.br</b> em cópia.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Vida acadêmica no AVA</div>
+      <details>
+        <summary>Quantas chances o aluno tem nas atividades da área do aluno?</summary>
+        <div class="faq-body"><p>3 chances. A nota complementa a da prova e sempre vale a maior entre as tentativas.</p></div>
+      </details>
+      <details>
+        <summary>Qual a frequência mínima para aprovação?</summary>
+        <div class="faq-body"><p>Pelo menos 75% de presença.</p></div>
+      </details>
+      <details>
+        <summary>Como o aluno tira o histórico escolar?</summary>
+        <div class="faq-body"><p>UniFECAF One → Portal Acadêmico (Mentor) → Meu Curso → Histórico Escolar → preencher as informações → Executar Relatório. Serve também pra ver carga horária e disciplinas cursadas.</p></div>
+      </details>
+      <details>
+        <summary>Como o aluno anexa um trabalho?</summary>
+        <div class="faq-body"><p>Entrar na disciplina → Unidade 1 → Entrega do Trabalho → Carregar → Anexar Arquivo → Enviar.</p></div>
+      </details>
+      <details>
+        <summary>Como funciona a transferência de curso/modalidade?</summary>
+        <div class="faq-body"><p>UniFECAF One → Portal Acadêmico → Agiliza → Outros Requerimentos → Transferência de Curso/Modalidade. Se o aluno já tinha desconto, ele é mantido no novo curso.</p></div>
+      </details>
+      <details>
+        <summary>Onde está a lista de chamada impressa?</summary>
+        <div class="faq-body"><p>⚠️ O link que a Isa tinha era de um arquivo local do computador dela — precisa subir a versão atualizada num Drive compartilhado e trocar esse link aqui assim que possível.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="washington">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Academia Washington</div>
+    <h2>Período de férias — atenção com a rematrícula</h2>
+    <p class="sec-desc">A rotina diária da Washington já está mesclada com a da UniFECAF lá em cima. Aqui fica só o que é específico do período de férias.</p>
+
+    <div class="meet-card" style="padding:26px;">
+      <span class="live-badge" style="background:rgba(217,164,65,.18); border-color:rgba(217,164,65,.5); color:var(--gold-soft);">🗓️ ATENÇÃO NAS FÉRIAS</span>
+      <h3 style="font-size:20px;">Alunos da Washington entram de férias 1 semana depois de mim</h3>
+      <p>Isso significa que a rematrícula vai acontecer <b>sem mim por perto</b> — precisa ficar redondo. Montem uma planilha completa de alunos com:</p>
+      <div class="meet-script" style="font-style:normal;">
+        • Quem já rematriculou × quem ainda não rematriculou<br>
+        • Status de cobrança do próximo semestre gerada ou pendente<br>
+        • Envio do material de compra dos livros — quem já recebeu, quem falta
+      </div>
+      <p style="margin-top:14px; font-size:13.5px;">Atualizem essa planilha todo dia durante o período — é ela que vai guiar quem cobrar e quando gerar cada cobrança.</p>
+    </div>
+  </div>
+</section>
+
+<section id="treinamento">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Se precisar ir mais fundo</div>
+    <h2>Treinamento completo dos polos</h2>
+    <p class="sec-desc">Material oficial e mais extenso — matrícula, formas de ingresso, Mentor, financeiro, CRM, UniFECAF One e mais. Vale ter sempre à mão.</p>
+    <div class="linkgrid">
+      <a class="linkcard" href="https://joeldomingues-hub.github.io/Treinamento-Polos-UniFECAF/" target="_blank" rel="noopener">
+        <div class="ico">🎓</div>
+        <h4>Treinamento Relacionamento Polos</h4>
+        <p>Matrícula, formas de ingresso, Mentor, financeiro, CRM e UniFECAF One — passo a passo completo.</p>
+        <span class="go">ABRIR TREINAMENTO →</span>
+      </a>
+      <a class="linkcard" href="https://www.youtube.com/watch?v=vIImp0haAZc" target="_blank" rel="noopener">
+        <div class="ico">▶️</div>
+        <h4>Vídeo de treinamento gravado</h4>
+        <p>Indicado pra quem está começando agora ou precisa revisar o fluxo completo.</p>
+        <span class="go">ASSISTIR NO YOUTUBE →</span>
+      </a>
+      <a class="linkcard" href="https://polos.unifecaf.app/allenrolls" target="_blank" rel="noopener">
+        <div class="ico">🖥️</div>
+        <h4>UniFECAF Polos</h4>
+        <p>Sistema principal — matrículas, CRM, financeiro e Tarefas e Gestão.</p>
+        <span class="go">ACESSAR SISTEMA →</span>
+      </a>
+      <a class="linkcard" href="https://mentorweb.unifecaf.edu.br/" target="_blank" rel="noopener">
+        <div class="ico">📑</div>
+        <h4>Sistema Mentor</h4>
+        <p>Análise curricular e requerimentos — lembrar de configurar unidade Taboão da Serra.</p>
+        <span class="go">ACESSAR MENTOR →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contatos">
+  <div class="wrap">
+    <div class="sec-label"><span class="dot"></span>Escalonamento</div>
+    <h2>Quem chamar em cada situação</h2>
+    <p class="sec-desc">Sigam essa ordem. A maior parte das dúvidas se resolve nos dois primeiros níveis — sem precisar chegar em mim.</p>
+
+    <div class="contact-row">
+      <div>
+        <div class="who">1. Esta página + grupo interno do time</div>
+        <div class="when">Primeira parada pra qualquer dúvida operacional ou de FAQ.</div>
+      </div>
+    </div>
+    <div class="contact-row">
+      <div>
+        <div class="who">2. Relacionamento com Polos</div>
+        <div class="when">Seg–Qui 9h–18h50 · Sex 9h–17h50 — dúvidas de sistema, matrícula, polo.</div>
+      </div>
+      <a class="pill-btn" href="https://wa.me/551147876918" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="contact-row">
+      <div>
+        <div class="who">3. Agiliza — Central do Aluno</div>
+        <div class="when">Seg–Sex 9h–19h — só atende aluno, não atende polo.</div>
+      </div>
+      <a class="pill-btn" href="https://wa.me/551142104950" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="emergency">💛 <b>Esse fluxo existe pra resolver o máximo possível sem depender de mim</b> — mas isso não quer dizer que eu esteja inacessível. Se rolar algo que vocês não conseguem resolver pelos canais acima, ou que simplesmente precisa da minha cabeça, me chamem. Prefiro ser incomodada do que vocês ficarem travadas.</div>
+  </div>
+</section>
+
+<footer>
+  Central da Equipe — <b>Isa</b>
+</footer>
+
+</body>
+</html>
